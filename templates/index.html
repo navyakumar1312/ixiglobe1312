@@ -1,0 +1,292 @@
+<html>
+<head>
+<title>Plan With Ixigo</title>
+<style>
+body {
+margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;
+background-color: #f5f5f5;
+}
+
+.video-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+z-index: -1;
+}
+
+video {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.content {
+position: fixed;
+top: 50%;
+left: 20px;
+transform: translateY(-50%);
+background-color: rgba(255, 255, 255, 0.8);
+padding: 10px;
+color: darkorange;
+width: 600px;
+height: 700px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+z-index: 10;
+}
+
+h1 {
+font-size: 36px;
+margin-bottom: 10px;
+}
+
+h2 {
+font-size: 24px;
+margin-bottom: 20px;
+font-weight: normal;
+}
+
+form {
+max-width: 400px;
+margin: 0 auto;
+text-align: left;
+}
+
+.form-row {
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.form-row label {
+flex: 0 0 150px;
+text-align: right;
+margin-right: 10px;
+font-weight: bold;
+color: darkorange;
+}
+
+.form-row input,
+.form-row select {
+flex: 1;
+height: 30px;
+padding: 5px;
+}
+
+.form-row select {
+appearance: none;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 4px;
+}
+
+.form-row select:focus {
+outline: none;
+border-color: #999;
+}
+
+.form-row button {
+margin-top: 20px;
+padding: 10px 20px;
+font-size: 16px;
+color: #fff;
+background-color: darkorange;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.form-row button:hover {
+background-color: #ff7f00;
+}
+
+.response {
+position: fixed;
+top: 50%;
+right : 20px;
+transform: translateY(-50%);
+background-color: rgba(255, 255, 255, 0.8);
+padding: 10px;
+color: darkorange;
+width: 600px;
+height: 600px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+z-index: 10;
+text-align: right; /* Add text-align: right to align the response on the right side */
+}
+
+.response-text {
+max-height: 500px; /* Increase the height for more content */
+overflow-y: auto;
+text-align: right;
+
+}
+
+.response-text p {
+margin-bottom: 10px;
+text-align: right;
+}
+
+</style>
+</head>
+<body>
+<div class="video-container">
+<video autoplay loop muted>
+<source src="https://drive.google.com/uc?export=download&id=1RE0ysCIZm8W8kx0tRgp2V4ma2LXAwuTH" type="video/mp4">
+</video>
+</div>
+
+<div class="content">
+<div>
+<img src="https://drive.google.com/uc?export=download&id=1WCaUiInCR0r7Kmp9uEcBab1LqK9JJzMa" alt="Image" width="100" height="100">
+
+<h2>IxiGlobe - Your Travel Buddy</h2>
+
+<form id="trip-form">
+<div class="form-row">
+<label for="destination"><b>Tell us about your Wanderlust-Inducing Dream Destination!</b></label>
+<input type="text" id="destination" name="destination" required>
+</div>
+
+<div class="form-row">
+<label for="days"><b>How Many Adventure-Filled Days Will Your Trip Span?</b></label>
+<input type="number" id="days" name="days" required>
+</div>
+
+<div class="form-row">
+<label for="season"><b>Select the Best Season for Your Trip:</b></label>
+<select id="season" name="season" required>
+<option value="">Select Season</option>
+<option value="spring">Spring</option>
+<option value="summer">Summer</option>
+<option value="monsoon">Monsoon</option>
+<option value="autumn">Autumn</option>
+<option value="winter">Winter</option>
+</select>
+</div>
+
+<div class="form-row">
+<label for="budget_slabs" class="slider-label"><b>Paint us a picture of your Budgetary Canvas!</b></label>
+<div class="slider-container">
+<span class="budget-range-min">0</span>
+<input type="range" id="budget_slabs" name="budget_slabs" min="5000" max="1000000" step="5000" class="budget-slider" required>
+<span class="budget-range-max">100000</span>
+</div>
+</div>
+
+<div class="form-row">
+<label for="activities_for_kids"><b>Will There Be Little Adventurers Joining You?</b></label>
+<div class="button-group">
+<button id="activities_yes" type="button" class="active">Yes</button>
+<button id="activities_no" type="button">No</button>
+</div>
+</div>
+
+<div class="form-row" id="age_group_row" style="display: none;">
+<label for="age_group"><b>Age Group:</b></label>
+<select id="age_group" name="age_group">
+<option value="0-2">0-2 years</option>
+<option value="2-4">2-4 years</option>
+<option value="4-6">4-6 years</option>
+<option value="6-8">6-8 years</option>
+<option value="8-10">8-10 years</option>
+</select>
+</div>
+
+<div class="form-row">
+<label><b>Indulge in Gastronomic Delights, Cozy Cafes, or Exquisite Accommodations??</b></label>
+<table>
+<tr>
+<td>
+<input type="checkbox" id="cafe" name="search_query" value="cafe">
+<label for="cafe">Cafes</label>
+</td>
+<td>
+<input type="checkbox" id="hotel" name="search_query" value="hotel">
+<label for="hotel">Hotels</label>
+</td>
+<td>
+<input type="checkbox" id="restaurant" name="search_query" value="restaurant">
+<label for="restaurant">Restaurants</label>
+</td>
+</tr>
+<tr>
+<td>
+<input type="checkbox" id="pet_friendly" name="search_query" value="Pet Friendly">
+<label for="pet_friendly">Pet Friendly</label>
+</td>
+<td>
+<input type="checkbox" id="places_to_visit" name="search_query" value="Places_to_visit">
+<label for="places_to_visit">Places To Visit</label>
+</td>
+<td></td>
+</tr>
+</table>
+</div>
+
+<div class="form-row">
+<button type="submit">Embark on an Unforgettable Journey!</button>
+</div>
+</form>
+
+<div class="response" id="response" style="display: none;">
+<h3>Your Trip Plan:</h3>
+    <div class="response-text">
+        <p id="response-content"></p>
+    </div>
+</div>
+
+
+</div>
+</div>
+
+<script>
+// JavaScript code
+const activitiesYesButton = document.getElementById('activities_yes');
+const activitiesNoButton = document.getElementById('activities_no');
+const ageGroupRow = document.getElementById('age_group_row');
+
+activitiesYesButton.addEventListener('click', () => {
+ageGroupRow.style.display = 'flex';
+activitiesYesButton.classList.add('active');
+activitiesNoButton.classList.remove('active');
+});
+
+activitiesNoButton.addEventListener('click', () => {
+ageGroupRow.style.display = 'none';
+activitiesNoButton.classList.add('active');
+activitiesYesButton.classList.remove('active');
+});
+
+const form = document.getElementById('trip-form');
+const responseElement = document.getElementById('response-content');
+const responseDiv = document.getElementById('response');
+
+const showResponse = (data) => {
+    responseElement.textContent = data.response;
+    responseDiv.style.display = 'block';
+    responseDiv.style.right = 'unset'; // Reset the 'right' property to remove any previous positioning
+};
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(form);
+    const response = await fetch('/plan_trip', {
+        method: 'POST',
+        body: formData
+    });
+    const data = await response.json();
+    showResponse(data);
+});
+
+
+
+</script>
+</body>
+</html>
